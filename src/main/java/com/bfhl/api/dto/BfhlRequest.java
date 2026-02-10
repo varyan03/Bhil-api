@@ -2,6 +2,7 @@ package com.bfhl.api.dto;
 
 import com.bfhl.api.validation.SingleFieldRequired;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -23,5 +24,6 @@ public class BfhlRequest {
 
     private List<Integer> hcf;
 
+    @JsonProperty("AI")
     private String AI;
 }

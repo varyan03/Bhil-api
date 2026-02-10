@@ -2,6 +2,7 @@ package com.bfhl.api.controller;
 
 import com.bfhl.api.dto.BfhlRequest;
 import com.bfhl.api.dto.BfhlResponse;
+import com.bfhl.api.service.AIService;
 import com.bfhl.api.service.MathService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class BfhlController {
     @Autowired
     private MathService mathService;
 
+    @Autowired
+    private AIService aiService;
+
     /**
      * POST /bfhl endpoint handling all functional keys
      * 
@@ -43,8 +47,7 @@ public class BfhlController {
         } else if (request.getHcf() != null) {
             data = mathService.calculateHCF(request.getHcf());
         } else if (request.getAI() != null) {
-            // TODO: Implement AI service integration
-            data = "NotImplementedYet";
+            data = aiService.getAnswer(request.getAI());
         }
 
         BfhlResponse response = new BfhlResponse(true, officialEmail, data);
